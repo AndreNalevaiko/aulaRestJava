@@ -47,7 +47,8 @@ public class ClienteRest {
 		return cliente;
 	}
 	
-	@DELETE
+	@POST
+	@Path("/excluir")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void excluir(Cliente cliente) {
 		try {

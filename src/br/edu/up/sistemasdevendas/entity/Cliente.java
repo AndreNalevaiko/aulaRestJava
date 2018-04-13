@@ -18,8 +18,15 @@ public class Cliente {
 	private Integer id;
 	private String nome;
 	private Integer idade;
+	private Integer cpf;
 	
 	
+	public Integer getCpf() {
+		return cpf;
+	}
+	public void setCpf(Integer cpf) {
+		this.cpf = cpf;
+	}
 	public Integer getId() {
 		return id;
 	}

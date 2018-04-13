@@ -19,7 +19,7 @@ public class FacadeGeraContrato2 {
 		this.idBanco = idBanco;
 	}
 
-	public void geraContrato() {
+	public Contrato geraContrato() {
 		ClienteService serviceCli = new ClienteService();
 		BancoService serviceBan = new BancoService();
 		ContratoService serviceCon = new ContratoService();
@@ -38,6 +38,8 @@ public class FacadeGeraContrato2 {
 		con.setBanco(b);
 		
 		serviceCon.salvar(con);
+		
+		return con;
 	}
 
 }

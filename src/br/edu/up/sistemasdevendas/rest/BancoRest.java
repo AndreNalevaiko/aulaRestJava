@@ -35,7 +35,8 @@ public class BancoRest {
 		return Banco;
 	}
 	
-	@PUT
+	@POST
+	@Path("/alterar")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Banco alterar(Banco Banco) {
 		try {
@@ -47,7 +48,8 @@ public class BancoRest {
 		return Banco;
 	}
 	
-	@DELETE
+	@POST
+	@Path("/excluir")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void excluir(Banco Banco) {
 		try {
