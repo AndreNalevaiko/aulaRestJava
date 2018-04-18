@@ -10,6 +10,10 @@ import br.edu.up.sistemasdevendas.entity.Banco;
 public class BancoService {	
 		
 		public void salvar(Banco banco){
+			
+			if (banco.getNome() == "" || banco.getNome() == null) {
+				return;
+			}
 							
 			Dao<Banco> bancoDao = new BancoDao();
 			bancoDao.salvar(banco);
@@ -23,6 +27,9 @@ public class BancoService {
 		}
 		
 		public void alterar(Banco b)  throws ServiceException {
+			if (b.getNome() == "" || b.getNome() == null) {
+				return;
+			}
 			if(b.getId() == null) {
 				throw new ServiceException("nao tem");
 			}

@@ -10,7 +10,11 @@ import br.edu.up.sistemasdevendas.entity.Cliente;
 public class ClienteService {
 	
 	public void salvar(Cliente cliente) {
-		
+		if (cliente.getNome() == "" || cliente.getNome() == null) {
+			return;
+		}else if (cliente.getIdade() == null) {
+			return;
+		}
 		Dao<Cliente> clienteDao = FactoryDao.createClienteDao();
 		clienteDao.salvar(cliente);
 				
@@ -25,6 +29,12 @@ public class ClienteService {
 	public void alterar(Cliente c)  throws ServiceException {
 		if(c.getId() == null) {
 			throw new ServiceException("nao tem");
+		}
+		
+		if (c.getNome() == "" || c.getNome() == null) {
+			return;
+		}else if (c.getIdade() == null) {
+			return;
 		}
 		Dao<Cliente> clienteDao = FactoryDao.createClienteDao();
 		

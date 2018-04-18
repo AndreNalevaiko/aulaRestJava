@@ -7,6 +7,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import br.edu.up.sistemasdevendas.entity.Contrato;
@@ -45,10 +46,10 @@ public class ContratoRest {
 		public Integer idCustomer;
 		public Integer idBanco;
 		
-		public Integer getIdadeCustomer() {
+		public Integer getIdCustomer() {
 			return idCustomer;
 		}
-		public void setIdadeCustomer(Integer idadeCustomer) {
+		public void setIdCustomer(Integer idadeCustomer) {
 			this.idCustomer = idadeCustomer;
 		}
 		public Integer getIdBanco() {
@@ -70,10 +71,15 @@ public class ContratoRest {
 	@Path("/generateWithoutCustomer")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Contrato generateWithoutCustomer(GenerateWithoutCustomer data) {
+	//public Contrato generateWithoutCustomer(GenerateWithoutCustomer data) {
+	public Contrato generateWithoutCustomer(@QueryParam("nomeCli") String nomeCli,
+			@QueryParam("idadeCli") Integer idadeCli, @QueryParam("idBanco") Integer idBanco) {	
 		Contrato c = new Contrato();
-		FacadeGeraContrato2 facade = new FacadeGeraContrato2(data.getNomeCustomer(), 
-				data.getIdadeCustomer(), data.getIdBanco());
+		FacadeGeraContrato2 facade = new FacadeGeraContrato2();
+		facade.setIdadeCli(idadeCli);
+		facade.setNomeCli(nomeCli);
+		facade.setIdBanco(idBanco);
+		
 		
 		try {
 			c = facade.geraContrato();
@@ -89,10 +95,14 @@ public class ContratoRest {
 	@Path("/generateWithCustomer")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Contrato generateWithCustomer(GenerateWithCustomer data) {
+	public Contrato generateWithCustomer(@QueryParam("idCliente") Integer idCliente, @QueryParam("idBanco") Integer idBanco) {
 		Contrato c = new Contrato();
+		FacadeGeraContrato2 facade = new FacadeGeraContrato2();
+		facade.setIdBanco(idBanco);
+		facade.setIdCli(idCliente);
+		
 		try {
-			
+			c = facade.geraContrato();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

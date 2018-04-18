@@ -10,7 +10,11 @@ public class TesteFacade {
 	@Test
 	public void deveriaCriarContrato() {
 		
-		FacadeGeraContrato2 teste = new FacadeGeraContrato2("Andre", 20, 1);
+		FacadeGeraContrato2 teste = new FacadeGeraContrato2();
+		
+		teste.setNomeCli("André");
+		teste.setIdadeCli(20);
+		teste.setIdBanco(35);
 		
 		teste.geraContrato();
 	}
